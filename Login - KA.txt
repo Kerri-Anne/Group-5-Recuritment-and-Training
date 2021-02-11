@@ -1,0 +1,68 @@
+from tkinter import *
+
+#var = IntVar()
+#for text, value in [('Admin', 1), ('Guest', 2)]:
+    #Radiobutton(root, text=text, value=value, variable=var).pack(anchor=W)
+#var.set(1)
+
+def login_verify():
+    print("Working...")
+    username1 = username_verify.get()
+    password1 = password_verify.get()
+    #username_entry1.delete(0, END)
+    #password_entry1.delete(0, END)
+
+   # list_of_files = os.listdir()
+    #if username1 == list_of_files:
+        #file1 = open(username1, "r")
+        #verify = file1.read().splitlines()
+        #if password1 in verify:
+            #print("login success")
+        #else:
+            #print("password has not been recognised")
+    #else:
+        #print("User not found!")
+
+def login():
+    global screen
+    screen = Toplevel(main)
+    screen.title("Login")
+    screen.geometry("300x250")
+    Label(screen, text="Please enter your login details").pack()
+    Label(screen, text="").pack()
+
+    global username_verify
+    global password_verify
+
+    username_verify = StringVar()
+    password_verify = StringVar()
+
+    Label(screen, text="Username:", fg='blue').pack(pady=10)
+    Entry(screen, textVariable=username_verify).pack(pady=10, padx=10)
+    Label(screen, text="").pack()
+
+    Label(screen, text="Password:", fg='purple').pack(pady=10)
+    Entry(screen, textVariable=password_verify).pack(pady=10, padx=10)
+    Label(screen, text="").pack()
+
+    Button(screen, text="Login", width=10, height=1, command=login_verify).pack(side=LEFT)
+
+
+def main_screen():
+    global main
+    main = Tk()
+    main.geometry("300x250")
+    main.title('Welcome!')
+
+    Label(main, text='').pack(pady=10)
+    Button(main, text="Login", width=20, height=2, command=login).pack()
+
+    t5menuBar = Menu(main)
+    main.config(menu=t5menuBar)
+    file = Menu(t5menuBar)
+
+    t5menuBar.add_cascade(menu=file, label='File')
+
+    main.mainloop()
+
+main_screen()
