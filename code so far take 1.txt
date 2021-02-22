@@ -1,0 +1,89 @@
+from tkinter import *
+
+#var = IntVar()
+#for text, value in [('Admin', 1), ('Guest', 2)]:
+    #Radiobutton(root, text=text, value=value, variable=var).pack(anchor=W)
+#var.set(1)
+
+def register():
+    register_screen = Toplevel(main_screen)
+    register_screen.geometry("300x250")
+    register_screen.title('Register')
+
+    username = StringVar()
+    password = StringVar()
+
+    Label(register_screen, text='Please enter details below: ').pack(pady=10)
+    Label(register_screen, text='').pack(pady=10)
+    Label(register_screen, text='Username').pack(pady=10)
+    Entry(register_screen, textvariable = username)
+    Label(register_screen, text='Password').pack(pady=10)
+    Entry(register_screen, textvariable = password)
+    Label(register_screen, text='').pack(pady=10)
+
+    Button(register_screen)
+
+def login_verify():
+    print("Working...")
+    username1 = username_verify.get()
+    password1 = password_verify.get()
+    #username_entry1.delete(0, END)
+    #password_entry1.delete(0, END)
+
+   # list_of_files = os.listdir()
+    #if username1 == list_of_files:
+        #file1 = open(username1, "r")
+        #verify = file1.read().splitlines()
+        #if password1 in verify:
+            #print("login success")
+        #else:
+            #print("password has not been recognised")
+    #else:
+        #print("User not found!")
+
+def login():
+    login_screen = Toplevel(main_screen)
+    login_screen.title("Login")
+    login_screen.geometry("300x250")
+    Label(login_screen, text="Please enter your login details").pack()
+    Label(login_screen, text="").pack()
+
+    global username_verify
+    global password_verify
+
+    username_verify = StringVar()
+    password_verify = StringVar()
+
+    Label(login_screen, text="Username:", fg='blue').pack(pady=10)
+    Entry(login_screen, textVariable=username_verify).pack(pady=10, padx=10)
+    Label(login_screen, text="").pack()
+
+    Label(login_screen, text="Password:", fg='purple').pack(pady=10)
+    Entry(login_screen, textVariable=password_verify).pack(pady=10, padx=10)
+    Label(login_screen, text="").pack()
+
+    Button(login_screen, text="Login", width=10, height=1, command=login_verify).pack(side=LEFT)
+
+
+def main_screen():
+    global main_screen
+    main_screen = Tk()
+    main_screen.geometry("300x250")
+    main_screen.title('Welcome!')
+
+    Label(main_screen, text='Please login in to admin if your an administrator otherwise login as a guest!', bg="light blue", width="300", height=2, font=("Cambria Math", 10)) .pack(pady=10)
+    Button(main_screen, text="Admin Login", bg="green", width="30", height=2, command=login).pack()
+    Label(main_screen, text='').pack(pady=10)
+    Button(main_screen, text="Guest Login", bg="purple", width="30", height=2, command=login).pack()
+    Label(main_screen, text='').pack(pady=10)
+    Button(main_screen, text="Register", width="30", height=2, command=register).pack()
+
+    t5menuBar = Menu(main_screen)
+    main_screen.config(menu=t5menuBar)
+    file = Menu(t5menuBar)
+
+    t5menuBar.add_cascade(menu=file, label='File')
+
+    main_screen.mainloop()
+
+main_screen()
